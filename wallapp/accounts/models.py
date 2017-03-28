@@ -26,6 +26,13 @@ class AbstractBaseUser(DjangoAbstractBaseUser, PermissionsMixin):
             Unselect this instead of deleting accounts.
         """
     )
+    email_verified = models.BooleanField(
+        default=False,
+        help_text="""
+            Designates whether user has verified email or not, different from is_active
+            because user can suspend his account, therefore changing the value of is_active by himself.
+        """
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -39,7 +46,7 @@ class User(AbstractBaseUser):
     last_name = models.CharField('Last Name', max_length=30, blank=True)
 
     date_joined = models.DateTimeField('Date joined', auto_now_add=True)
-    bithdate = models.DateField('Birthdate', null=True, blank=True)
+    birthdate = models.DateField('Birthdate', null=True, blank=True)
 
     objects = UserManager()
 

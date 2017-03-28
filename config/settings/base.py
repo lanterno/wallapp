@@ -231,8 +231,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_URL = '/api/v1/users/auth/login/'
-LOGOUT_URL = '/api/v1/users/auth/logout/'
+LOGIN_URL = '/api/v1/auth/login/'
+LOGOUT_URL = '/api/v1/auth/logout/'
 
 # -------------------------------- DJOSER--------------------------------------
 DJOSER = {
@@ -242,7 +242,7 @@ DJOSER = {
     'ACTIVATION_URL': 'auth/activate/{uid}/{token}',
     'LOGIN_AFTER_REGISTRATION': True,
     'LOGIN_AFTER_ACTIVATION': True,
-    'SEND_ACTIVATION_EMAIL': False,
+    'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {
         'user': 'wallapp.accounts.serializers.UserSerializer',
         'login': 'wallapp.accounts.serializers.LoginSerializer',

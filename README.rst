@@ -5,6 +5,8 @@ WallApp is like facebook except it has only one wall
 
 Developed in a TDD fashion
 
+NOTE: all emails appear in terminal for the time being.
+
 :License: MIT
 
 

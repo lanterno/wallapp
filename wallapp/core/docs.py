@@ -3,10 +3,9 @@ from coreapi import Document, Link, Field
 
 BASE_URL = '/api/v1/'
 BASE_AUTH_URL = BASE_URL + 'auth/'
-BASE_ANALYTICS_URL = BASE_URL + 'analytics/'
 
 SCHEMA = Document(
-    title='Element API',
+    title='WallApp API',
     content={
         'auth': {
             'register': Link(
@@ -15,6 +14,7 @@ SCHEMA = Document(
                 description="""
                     Register a new user
 
+                    Note: You have to activate your account
                 """,
                 fields=[
                     Field(
@@ -53,7 +53,11 @@ SCHEMA = Document(
             'login': Link(
                 url=BASE_AUTH_URL + 'login/',
                 action='post',
-                description='User Login',
+                description="""
+                    User Login
+
+                    Just like facebook, if you've deactivated your account, you can activate it again on login.
+                """,
                 fields=[
                     Field(
                         name='email',
@@ -210,7 +214,7 @@ SCHEMA = Document(
                 ],
             ),
             'suspend-my-account': Link(
-                url=BASE_AUTH_URL + 'suspend-account/',
+                url=BASE_AUTH_URL + 'disable-account/',
                 action='post',
                 description="""
                     Suspend My account
