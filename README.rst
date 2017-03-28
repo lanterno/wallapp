@@ -9,6 +9,9 @@ NOTE: all emails appear in terminal for the time being.
 
 Documentation is available on /api/v1/docs/
 
+The system is currently represented as a swagger documentation with No frontend that consumes the backend.
+
+But the Swagger docs has a very good explaination for each endpoint and you can use the docs to try everything out.
 
 :License: MIT
 
