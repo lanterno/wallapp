@@ -7,6 +7,9 @@ Developed in a TDD fashion
 
 NOTE: all emails appear in terminal for the time being.
 
+Documentation is available on /api/v1/docs/
+
+
 :License: MIT
 
 
