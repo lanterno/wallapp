@@ -15,8 +15,7 @@ class PostViewset(ModelViewSet):
         Raises an appropriate exception if the request is not permitted.
         """
         super().check_object_permissions(request, obj)
-
-        if self.action in ['update', 'partial_update'] and obj.owner != request.user:
+        if self.action in ['update', 'partial_update', 'destroy'] and obj.owner != request.user:
             self.permission_denied(
                 request, message="Only owner can update/delete object"
             )

@@ -84,7 +84,7 @@ class PostTests(APITestCase):
                 'text': "This is my first updated Post"
             }
         )
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 204)
 
     def test_post_max_length(self):
         max_length = settings.POST_MAX_LENGTH
