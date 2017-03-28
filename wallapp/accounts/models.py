@@ -61,3 +61,6 @@ class User(AbstractBaseUser):
         if self.first_name and self.last_name:
             return self.first_name + ' ' + self.last_name
         return self.email
+
+    def get_short_name(self):
+        return str(self)
