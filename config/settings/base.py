@@ -246,6 +246,7 @@ DJOSER = {
     'LOGIN_AFTER_REGISTRATION': True,
     'LOGIN_AFTER_ACTIVATION': True,
     'SEND_ACTIVATION_EMAIL': True,
+    'SEND_CONFIRMATION_EMAIL': True,
     'SERIALIZERS': {
         'user': 'wallapp.accounts.serializers.UserSerializer',
         'login': 'wallapp.accounts.serializers.LoginSerializer',
