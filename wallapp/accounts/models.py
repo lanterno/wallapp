@@ -63,4 +63,4 @@ class User(AbstractBaseUser):
         return self.email
 
     def get_short_name(self):
-        return str(self)
+        return self.first_name or self.email

@@ -7,6 +7,24 @@ from .factories import UnactivatedUserFactory, ActivatedUserFactory, ClosedAccou
 
 class UserTests(APITestCase):
 
+    def test_create_superuser(self):
+        admin = User.objects.create_superuser(
+            email='admin@home.com',
+            password='123qwe',
+        )
+        self.assertEqual(admin.is_superuser, True)
+        self.assertEqual(admin.is_staff, True)
+        self.assertEqual(admin.check_password('123qwe'), True)
+
+        self.assertEqual(str(admin), 'admin@home.com')
+        self.assertEqual(admin.get_short_name(), 'admin@home.com')
+        admin.first_name = 'Ahmed'
+        admin.last_name = 'Saad'
+        admin.save()
+        self.assertEqual(admin.get_short_name(), 'Ahmed')
+        self.assertEqual(str(admin), 'Ahmed Saad')
+        self.assertEqual(admin.get_full_name(), 'Ahmed Saad')
+
     def test_user_registration_flow(self):
         # test system has no users
         self.assertEqual(User.objects.all().count(), 0)
@@ -115,7 +133,7 @@ class UserTests(APITestCase):
         )
         self.assertEqual(response.status_code, 400)
 
-    def test_unverified_users_and_closed_accounts_get_different_error_messages(self):
+    def test_unverified_users_and_wrong_credentials_and_closed_accounts_get_different_error_messages(self):
         unactivated_user = UnactivatedUserFactory()
         closed_account = ClosedAccountFactory()
 
@@ -136,3 +154,14 @@ class UserTests(APITestCase):
         ).json()
 
         self.assertNotEqual(response1, response2)
+
+        response3 = self.client.post(
+            reverse('auth:login'),
+            data={
+                'email': 'Wrong_email@home.com',
+                'password': '123qwe',
+            }
+        ).json()
+
+        self.assertNotEqual(response1, response3)
+        self.assertNotEqual(response2, response3)
