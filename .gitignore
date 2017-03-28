@@ -64,3 +64,6 @@ wallapp/media/
 
 
 staticfiles/
+
+*.db
+.cache
