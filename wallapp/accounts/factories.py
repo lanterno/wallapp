@@ -32,3 +32,6 @@ class ActivatedUserFactory(UnactivatedUserFactory):
 
 class ClosedAccountFactory(ActivatedUserFactory):
     is_active = False
+
+
+UserFactory = ActivatedUserFactory # easier name For easier consumpion by other apps

@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^api/v1/docs/$', SwaggerSchemaView.as_view(), name='docs'),
     url(r'^api/v1/auth/', include('wallapp.accounts.urls', namespace='auth')),
     url(r'^api/v1/auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^api/v1/wall/', include('wallapp.wall.urls', namespace='wall')),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
