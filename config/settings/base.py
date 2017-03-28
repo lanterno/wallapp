@@ -36,6 +36,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'wallapp.core.apps.CoreConfig',
     'wallapp.accounts.apps.AccountsConfig',
+    'wallapp.wall.apps.WallConfig',
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -208,6 +209,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
         'rest_framework.renderers.MultiPartRenderer',
     ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 10,
 }
 
 # -------------------------------- AUTHENTICATION and Django-Users2--------------------------------------
