@@ -3,6 +3,7 @@ from coreapi import Document, Link, Field
 
 BASE_URL = '/api/v1/'
 BASE_AUTH_URL = BASE_URL + 'auth/'
+BASE_WALL_URL = BASE_URL + 'wall/'
 
 SCHEMA = Document(
     title='WallApp API',
@@ -229,5 +230,63 @@ SCHEMA = Document(
                 ],
             ),
         },
+        'wall': {
+            'list-posts': Link(
+                url=BASE_WALL_URL,
+                action='get',
+                description="""
+                    List all posts on wall
+
+                    Only posts written by non-closed accounts users are shown.
+                """,
+            ),
+            'create-post': Link(
+                url=BASE_WALL_URL,
+                action='post',
+                description="""
+                    Write a new post
+                """,
+                fields=[
+                    Field(
+                        name='text',
+                        required=True,
+                        location='formData',
+                    ),
+                ]
+            ),
+            'update-post': Link(
+                url=BASE_WALL_URL + '{pk}/',
+                action='put',
+                description="""
+                    Update post owner by logged-in user
+                """,
+                fields=[
+                    Field(
+                        name='text',
+                        required=True,
+                        location='formData',
+                    ),
+                    Field(
+                        name='pk',
+                        required=True,
+                        location='path',
+                    ),
+                ]
+            ),
+            'delete-post': Link(
+                url=BASE_WALL_URL + '{pk}/',
+                action='delete',
+                description="""
+                    Delete Post owner by logged-in user
+                """,
+                fields=[
+                    Field(
+                        name='pk',
+                        required=True,
+                        location='path',
+                    ),
+                ]
+            ),
+        }
     }
 )
