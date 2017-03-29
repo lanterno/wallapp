@@ -1,6 +1,6 @@
 import factory
 
-from .models import User
+from ..models import User
 
 
 class UnactivatedUserFactory(factory.django.DjangoModelFactory):
@@ -34,4 +34,4 @@ class ClosedAccountFactory(ActivatedUserFactory):
     is_active = False
 
 
-UserFactory = ActivatedUserFactory # easier name For easier consumpion by other apps
+UserFactory = ActivatedUserFactory  # easier name For easier consumpion by other apps

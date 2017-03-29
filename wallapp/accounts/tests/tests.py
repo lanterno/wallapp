@@ -3,7 +3,7 @@ from rest_framework.test import APITestCase
 from django.urls import reverse
 from django.core import mail
 
-from .models import User
+from ..models import User
 from .factories import UnactivatedUserFactory, ActivatedUserFactory, ClosedAccountFactory
 
 

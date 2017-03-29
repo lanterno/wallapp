@@ -1,7 +1,7 @@
 from rest_framework.test import APITestCase
 from django.urls import reverse
 
-from wallapp.accounts.factories import UserFactory
+from wallapp.accounts.tests.factories import UserFactory
 
 from .. import settings
 from ..models import Post
