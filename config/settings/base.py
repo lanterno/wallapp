@@ -239,7 +239,7 @@ LOGOUT_URL = '/api/v1/auth/logout/'
 
 # -------------------------------- DJOSER--------------------------------------
 DJOSER = {
-    'DOMAIN': 'http://wallappfrontendsite.herokuapp.com',
+    'DOMAIN': 'wallappfrontendsite.herokuapp.com',
     'SITE_NAME': 'Element Portal',
     'PASSWORD_RESET_CONFIRM_URL': 'auth/password/reset/confirm/{uid}/{token}',
     'ACTIVATION_URL': 'auth/activate/{uid}/{token}',

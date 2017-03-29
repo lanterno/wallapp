@@ -1,5 +1,7 @@
+import re
 from rest_framework.test import APITestCase
 from django.urls import reverse
+from django.core import mail
 
 from .models import User
 from .factories import UnactivatedUserFactory, ActivatedUserFactory, ClosedAccountFactory
@@ -165,3 +167,30 @@ class UserTests(APITestCase):
 
         self.assertNotEqual(response1, response3)
         self.assertNotEqual(response2, response3)
+
+    def test_verify_mail(self):
+        self.client.post(
+            reverse('auth:register'),
+            data={
+                'email': 'tester@home.com',
+                'password': '123qwe'
+            }
+        )
+        user = User.objects.last()
+
+        activation_mail = mail.outbox[0]
+
+        pattern = re.compile(r"http:\/\/testdomain.somewhere.com\/auth\/activate\/(?P<uid>[\w_-]*)\/(?P<token>[\w_-]*)")
+
+        match = pattern.search(activation_mail.body)
+
+        self.assertEqual(user.email_verified, False)
+        self.assertEqual(user.is_active, False)
+        response = self.client.post(
+            path=reverse('auth:activate'),
+            data=match.groupdict()
+        )
+        user.refresh_from_db()
+        self.assertEqual(response.status_code, 204)
+        self.assertEqual(user.is_active, True)
+        self.assertEqual(user.email_verified, True)
