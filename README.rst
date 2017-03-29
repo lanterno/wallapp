@@ -3,7 +3,7 @@ WallApp
 
 WallApp is like facebook except it has only one wall
 
-Developed in a TDD fashion
+Developed in a TDD fashion -> 100% test coverage
 
 NOTE: all emails appear in terminal for the time being.
 
